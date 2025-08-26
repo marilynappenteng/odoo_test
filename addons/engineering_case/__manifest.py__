@@ -1,0 +1,12 @@
+{
+	'name': 'Engineering Case',
+	'summary': 'Make requests for work from the engineering team',
+	'description': "",
+	'depends': [
+	'base',
+	'project'
+	],
+	'installable': True,
+	'application': False,
+	'auto_install': True
+}
