@@ -1,0 +1,7 @@
+{
+	'name': 'engineering_case_test',
+	'depends': [
+		'base'
+	]
+}
+
