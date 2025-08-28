@@ -1,5 +1,5 @@
 {
-	'name': 'engineering_case_test',
+	'name': 'Engineering Case Test',
 	'depends': [
 		'base'
 	]
