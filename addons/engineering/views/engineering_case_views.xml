@@ -39,7 +39,7 @@
 					<field name="case_details"/>
 					<field name="expected_completion"/>
 					<field name="case_comments"/>
-					<field name="status"/>
+					<field name="status" readonly="1"/>
 				</group>
 				<group>
 					<field name="case_type"/>
@@ -48,6 +48,12 @@
 					<field name="work_done"/>
 					<field name="approver_id"/>
 					<field name="approver_comments"/>
+				</group>
+				<group>
+					<field name="date_assigned" readonly="1"/>
+					<field name="date_acknowledged" readonly="1"/>
+					<field name="deadline"/>
+					<field name="actual_completion" readonly="1"/>
 				</group>
 				<group>
 					<field name="rating"/>

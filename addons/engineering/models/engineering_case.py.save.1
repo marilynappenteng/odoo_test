@@ -1,5 +1,6 @@
+
 from odoo import api, fields, models
-from odoo.exceptions import ValidationError
+
 
 
 class EngineeringCase(models.Model):
@@ -11,7 +12,7 @@ class EngineeringCase(models.Model):
 	requested_by_id = fields.Many2one("hr.employee", string='Requested By', default=lambda self: self.env.user.employee_id.id, required=True)
 	case_details = fields.Char('Case Details', required=True)
 	case_comments = fields.Char('Case Comments')
-	status = fields.Selection([('in_progress','In Progress'),('pending_approval','Pending Approval'),('completed','Completed'),('pending_assignment','Pending Assignment'),('on_hold','On Hold'),('evaluated','Evaluated'),('new', 'New'), ('pending_acknowledgement','Pending Acknowledgement')], index=True, required=True, default='new')
+	status = fields.Selection([('in_progress','In Progress'),('pending_approval','Pending Approval'),('completed','Completed'),('pending_assignment','Pending Assignment'),('on_hold','On Hold'),('evaluated','Evaluated'),('new', 'New')], index=True, required=True, readonly=True, default='new')
 	expected_completion = fields.Datetime('Expected Completion Date')
 	case_type = fields.Selection([('internal_automation', 'Internal Automation Support'),('internal_software', 'Internal Software Support'),('survey_boq', 'Survey & BOQ Support'),('rnd', 'Research & Development'),('meter_verification', 'Meter Verification'),('internal_training', 'Internal Training'),('commercial_training', 'Commercial Training'),('project_support', 'Project Support Task'),('other', 'Other Task')], required=True, index=True)
 	assigned_to_id = fields.Many2one("hr.employee", string='Assigned To')
@@ -27,21 +28,4 @@ class EngineeringCase(models.Model):
 	rating = fields.Integer('Rate Us! How Satisfied Are You?')
 	feedback = fields.Char('Requestor Feedback')
 	active = fields.Boolean('Active', default=True, tracking=True)
-
-
-	_sql_constraints = [ 
-		('kpi_weight', 'CHECK(kpi_weight >= 1 AND kpi_weight <= 5)', 'KPI Weight is between 1 and 5.'),
-		('rating', 'CHECK(rating >= 1 AND rating <= 5)', 'The rating must be between 1 and 5.')
-	]
-
-	def action_submit_case(self):
-		for record in self:
-			record.status = 'pending_acknowledgement'
-		return True
-
-	@api.constrains('deadline')
-	def check_deadline(self):
-		for record in self:
-			if record.deadline < fields.Datetime.now():
-				raise ValidationError("The deadline cannot be set in the past.")
 

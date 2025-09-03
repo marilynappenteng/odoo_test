@@ -1,7 +1,8 @@
 {
 	'name': 'engineering',
 	'depends': [
-		'base'
+		'base',
+		'hr'
 	],
 	'data': [
 		'security/ir.model.access.csv',
