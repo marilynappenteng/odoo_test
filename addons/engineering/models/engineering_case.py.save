@@ -8,7 +8,7 @@ class EngineeringCase(models.Model):
 
 	case_id = fields.Char('Name', required=True)
 	title = fields.Char('Title', required=True)
-	requested_by_id = fields.Many2one("hr.employee", string='Requested By', default=lambda self: self.env.user.employee_id.id, required=True)
+	requested_by_id = fields.)
 	case_details = fields.Char('Case Details', required=True)
 	case_comments = fields.Char('Case Comments')
 	status = fields.Selection([('in_progress','In Progress'),('pending_approval','Pending Approval'),('completed','Completed'),('pending_assignment','Pending Assignment'),('on_hold','On Hold'),('evaluated','Evaluated'),('new', 'New')], index=True, required=True, readonly=True, default='new')
@@ -18,7 +18,7 @@ class EngineeringCase(models.Model):
 	approver_id = fields.Many2one("hr.employee", string='Approver')
 	kpi_weight = fields.Integer('KPI Weight', default=1)
 	work_done = fields.Char('Work Done')
-	date_created = fields.Datetime('Date Created', default=fields.Datetime.now)
+	date_created = fields.Char('Date Created') 
 	approver_comments = fields.Char("Approver's Comments")
 	date_assigned = fields.Datetime('Date Assigned')
 	date_acknowledged = fields.Datetime('Date Acknowledged')
@@ -28,8 +28,3 @@ class EngineeringCase(models.Model):
 	feedback = fields.Char('Requestor Feedback')
 	active = fields.Boolean('Active', default=True, tracking=True)
 
-
-	def action_submit_case(self):
-		for record in self:
-			record.status = 'pending_assignment'
-		return True

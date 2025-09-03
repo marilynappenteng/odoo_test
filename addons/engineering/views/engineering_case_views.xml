@@ -1,5 +1,64 @@
-<record id="engineering_case_creation_action" model="ir.actions.act_window">
-	<field name="name">Create Engineering Case</field>
-	<field name="res_model">engineering.case</field>
-	<field name="view_mode">list,form</field>
-</record>
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="engineering_case_creation_action" model="ir.actions.act_window">
+		<field name="name">Create Engineering Case</field>
+		<field name="res_model">engineering.case</field>
+		<field name="view_mode">list,form</field>
+	</record>
+
+	<record id="engineering_case_view_list" model="ir.ui.view">
+		<field name="name">engineering.case.list</field>
+		<field name="model">engineering.case</field>
+		<field name="arch" type="xml">
+			<list string="Engineering Cases">
+				<field name="case_id"/>
+				<field name="title"/>
+				<field name="requested_by_id"/>
+				<field name="status"/>
+				<field name="deadline"/>
+				<field name="case_type"/>
+				<field name="assigned_to_id"/>
+			</list>
+		</field>
+	</record>
+
+	<record id="engineering_case_view_form" model="ir.ui.view">
+		<field name="name">engineering.case.form</field>
+		<field name="model">engineering.case</field>
+		<field name="arch" type="xml">
+			<form string="Engineering Case">
+				<header>
+					<button name="action_submit_case" type="object" string="Submit"/>
+				</header>
+				<sheet>
+				<group>
+					<field name="case_id"/>
+					<field name="title"/>
+					<field name="requested_by_id"/>
+					<field name="date_created"/>
+					<field name="case_details"/>
+					<field name="expected_completion"/>
+					<field name="case_comments"/>
+					<field name="status"/>
+				</group>
+				<group>
+					<field name="case_type"/>
+					<field name="kpi_weight"/>
+					<field name="assigned_to_id"/>
+					<field name="work_done"/>
+					<field name="approver_id"/>
+					<field name="approver_comments"/>
+				</group>
+				<group>
+					<field name="rating"/>
+					<field name="feedback"/>
+				</group>
+				<notebook>
+					<page string="Files">
+					</page>
+				</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+</odoo>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<menuitem id="engineering_menu_root" name="Engineering">
+		<menuitem id="engineering_menu_first_level" name="Cases">
+			<menuitem id="engineering_case_creation_menu_action" action="engineering_case_creation_action"/>
+		</menuitem>
+	</menuitem>
+</odoo>
+
